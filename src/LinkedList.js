@@ -11,11 +11,33 @@ class LinkedList {
     }
   }
 
-  appendToTail(value) {}
+  appendToTail(value) {
+    let newNode = new Node(value);
+    if (!this.tail) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+    this.tail.next = newNode;
+    this.tail = newNode;
+    return newNode;
+  }
 
-  removeHead() {}
+  removeHead() {
+    this.headBeforeRemoval = this.head;
+    this.head = this.head.next;
+    return this.headBeforeRemoval;
+  }
 
-  findNode(value) {}
+  findNode(value) {
+    function recursiveCall(node) {
+      if (node.value === value) return node;
+
+      if (!node.next) return null;
+      return recursiveCall(node.next);
+    }
+    let answer = recursiveCall(this.head);
+    return answer;
+  }
 
   /*
 +-------------------------+
