@@ -4,9 +4,29 @@ class Tree {
     this.children = [];
   }
 
-  addChild(value) {}
+  addChild(value) {
+    let childTree = new Tree(value);
+    this.children.push(childTree);
+  }
 
-  contains(value) {}
+  contains(value) {
+    let counter = false;
+    const recursiveCall = (node) => {
+      if (node.value === value) {
+        counter = true;
+        return;
+      }
+
+      if (node.children.length !== 0) {
+        for (let child of node.children) {
+          recursiveCall(child);
+        }
+      }
+
+      return counter;
+    };
+    return recursiveCall(this);
+  }
 
   /*
 +-------------------------+
@@ -31,3 +51,5 @@ requirements for ALL data structures in this exercise.
 |X                               X
 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 */
+
+module.exports = Tree;
