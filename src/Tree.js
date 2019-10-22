@@ -16,13 +16,11 @@ class Tree {
         counter = true;
         return;
       }
-
       if (node.children.length !== 0) {
         for (let child of node.children) {
           recursiveCall(child);
         }
       }
-
       return counter;
     };
     return recursiveCall(this);
